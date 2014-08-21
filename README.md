@@ -33,3 +33,28 @@ aliases :
 
 	'AuthorizationServer' => 'LucaDegasperi\OAuth2Server\Facades\AuthorizationServerFacade',
 	'ResourceServer' => 'LucaDegasperi\OAuth2Server\Facades\ResourceServerFacade',
+	
+
+## 6. config `app/config/database.php` to your setting
+
+	'mysql' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'test_db',
+			'username'  => 'test_user',
+			'password'  => '123456',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+	
+
+## 7. publish lib configuration
+
+	php artisan config:publish lucadegasperi/oauth2-server-laravel
+
+## 8. lib migration
+
+	php artisan migrate --package="lucadegasperi/oauth2-server-laravel"
+	
+	
