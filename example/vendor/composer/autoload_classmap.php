@@ -43,6 +43,7 @@ return array(
     'CreateOauthSessionRefreshTokensTable' => $vendorDir . '/lucadegasperi/oauth2-server-laravel/src/migrations/2013_07_24_134700_create_oauth_session_refresh_tokens_table.php',
     'CreateOauthSessionTokenScopesTable' => $vendorDir . '/lucadegasperi/oauth2-server-laravel/src/migrations/2013_07_24_135250_create_oauth_session_token_scopes_table.php',
     'CreateOauthSessionsTable' => $vendorDir . '/lucadegasperi/oauth2-server-laravel/src/migrations/2013_07_24_133359_create_oauth_sessions_table.php',
+    'CreateUsersTable' => $baseDir . '/app/database/migrations/2014_08_21_141820_create_users_table.php',
     'Crypt_AES' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/AES.php',
     'Crypt_Base' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/Base.php',
     'Crypt_Blowfish' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/Blowfish.php',
