@@ -83,7 +83,7 @@ aliases :
 
 	}
 	
-## 10. run create 
+## 10. run create table migration
 	
-	
+	php artisan migrate	
 	
