@@ -1,6 +1,8 @@
 laravel-oauth2-server-example
 =============================
 
+[OAuth-Server-Laravel](https://github.com/lucadegasperi/oauth2-server-laravel)
+
 laravel-oauth2-server-example
 
 ## 1. download th Laravel installer
@@ -11,7 +13,7 @@ laravel-oauth2-server-example
 
     laravel new example
     
-## 3. add oauth2 lib denpendency to `composer.json`
+## 3. add oauth2 library denpendency to `composer.json`
 
     "require": {
 		"laravel/framework": "4.2.*",
@@ -53,7 +55,7 @@ aliases :
 
 	php artisan config:publish lucadegasperi/oauth2-server-laravel
 
-## 8. lib migration
+## 8. library migration
 
 	php artisan migrate --package="lucadegasperi/oauth2-server-laravel"
 	
@@ -87,3 +89,86 @@ aliases :
 	
 	php artisan migrate	
 	
+## 11. add oauth models
+
+models/OauthClient.php
+
+	<?php
+
+    class OauthClient extends Eloquent  {
+
+	    /**
+	     * The database table used by the model.
+	     *
+	     * @var string
+	     */
+	    protected $table = 'oauth_clients';
+
+	    /**
+	     * The attributes excluded from the model's JSON form.
+	     *
+	     * @var array
+	     */
+	    protected $hidden = [ 'secret' ];
+
+    }
+
+
+models/OauthScope.php
+
+	<?php
+
+    class OauthScope extends Eloquent  {
+
+    	/**
+    	 * The database table used by the model.
+    	 *
+    	 * @var string
+    	 */
+    	protected $table = 'oauth_scopes';
+
+    	/**
+    	 * The attributes excluded from the model's JSON form.
+    	 *
+    	 * @var array
+    	 */
+    	protected $hidden = [];
+
+    }
+
+## 12. add oauth seeding
+	
+database/seeds/DatabaseSeeder.php
+
+	<?php
+
+    class DatabaseSeeder extends Seeder {
+
+    	/**
+    	 * Run the database seeds.
+    	 *
+    	 * @return void
+    	 */
+    	public function run()
+    	{
+    		Eloquent::unguard();
+
+    		$this->call('OAuthClientTableSeeder');
+            $this->command->info('OAuthClient table seeded!');
+
+            $this->call('OAuthScopeTableSeeder');
+            $this->command->info('OAuthScope table seeded!');
+    	}
+
+    }
+    
+database/seeds/OAuthClientTableSeeder.php
+
+
+
+database/seeds/OAuthScopeTableSeeder.php
+	
+	
+## 13. routing
+
+	x	
