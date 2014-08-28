@@ -1,7 +1,7 @@
 <?php namespace HashGenerator;
 
 class HashGenerator {
-    
+
     public static function generateNumber($length) {
 
         if ($length > 9) {
@@ -29,6 +29,6 @@ class HashGenerator {
         }
 
         return $hash;
-        
+
     }
 }

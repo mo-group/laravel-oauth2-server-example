@@ -136,7 +136,47 @@ models/OauthScope.php
 
     }
 
-## 12. add oauth seeding
+## 12. add a hashGenerator
+
+
+
+    <?php namespace HashGenerator;
+
+    class HashGenerator {
+
+        public static function generateNumber($length) {
+
+            if ($length > 9) {
+                return self::generateNumber(9) . self::generateNumber($length - 9);
+            }
+
+
+            $random_number = rand(0, pow(10, $length) - 1);
+
+            return substr(str_repeat('0', $length - 1) . $random_number, -$length);
+
+        }
+
+        public static function generateNumberAlphabet($length) {
+
+            $arr = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+
+            $hash = '';
+
+            while ($length > 0) {
+                $hash .= $arr[rand(0, 61)];
+                $length--;
+            }
+
+            return $hash;
+
+        }
+    }
+
+
+## 13. add oauth seeding
 	
 database/seeds/DatabaseSeeder.php
 
@@ -164,12 +204,53 @@ database/seeds/DatabaseSeeder.php
     
 database/seeds/OAuthClientTableSeeder.php
 
+	<?php
+
+    use HashGenerator\HashGenerator;
+
+    class OAuthClientTableSeeder extends Seeder {
+
+        public function run()
+        {
+
+            DB::table('oauth_clients')->delete();
+
+            for ($i = 0; $i < 3; $i++) {
+
+                OauthClient::create([
+                    'id'     => HashGenerator::generateNumber(32),
+                    'secret' => HashGenerator::generateNumberAlphabet(32),
+                    'name'   => 'test_client_' . $i
+                ]);
+            }
+        }
+
+    }
 
 
 database/seeds/OAuthScopeTableSeeder.php
 	
+	<?php
+
+    class OAuthScopeTableSeeder extends Seeder {
+
+        public function run()
+        {
+
+            DB::table('oauth_scopes')->delete();
+
+            OauthScope::create([
+                'scope'       => 'basic',
+                'name'        => 'basic',
+                'description' => 'basic'
+            ]);
+
+        }
+
+    }
+
 	
-## 13. routing
+## 14. routing
 
 add authorize code routing
 
