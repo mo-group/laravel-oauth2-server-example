@@ -298,3 +298,17 @@ add get token routing
 	{
 		return AuthorizationServer::performAccessTokenFlow();
 	});
+	
+## 15. add authorization-form view
+
+app/views/authorization-form.php
+
+	<form action="/oauth/authorize" method="post">
+		<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+		<!-- foreach -->
+		<input type="hidden" name="client_id" value="<?php echo $params['client_id']; ?>">
+		<input type="hidden" name="redirect_uri" value="<?php echo $params['redirect_uri']; ?>">
+		<input type="text" name="redirect_uri">
+		<input type="password" name="password">
+		<input type="submit" name="approve">
+	</form>
