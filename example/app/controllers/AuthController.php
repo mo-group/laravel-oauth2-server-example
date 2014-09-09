@@ -28,15 +28,39 @@ class AuthController extends BaseController {
 	public function signup()
 	{
 
+		User::create(array(
+			'email'      => Input::get('email'),
+			'password'   => Input::get('password'),
+			'first_name' => Input::get('first_name'),
+			'last_name'  => Input::get('last_name'),
+		));
+
+		if (Auth::attempt(array('email' => $email, 'password' => $password))) {
+
+			return Redirect::intended('/oauth/developer_platform');
+		}
+
+		// TODO: with error
+		return View::make('login-form');
 	}
 
 	public function login()
 	{
 
+		if (Auth::attempt(array('email' => $email, 'password' => $password))) {
+
+			return Redirect::intended('/oauth/developer_platform');
+		}
+
+		// TODO: with error
+		return View::make('login-form');
 	}
 
 	public function logout()
 	{
 
+		Auth::logout();
+
+		return Redirect::to('/login');
 	}
 }
