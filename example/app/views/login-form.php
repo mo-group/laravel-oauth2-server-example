@@ -35,7 +35,16 @@
 </head>
 <body>
     <div class="welcome">
-
+        <form action="/login" method="post">
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+            <label for="">Email:</label>
+            <input type="email" name="email">
+            <br>
+            <label for="">Password:</label>
+            <input type="password" name="password">
+            <br>
+            <input type="submit" value="submit">
+        </form>
     </div>
 </body>
 </html>

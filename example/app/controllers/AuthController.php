@@ -30,7 +30,7 @@ class AuthController extends BaseController {
 
 		User::create(array(
 			'email'      => Input::get('email'),
-			'password'   => Input::get('password'),
+			'password'   => Hash::make(Input::get('password')),
 			'first_name' => Input::get('first_name'),
 			'last_name'  => Input::get('last_name'),
 		));

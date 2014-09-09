@@ -35,7 +35,25 @@
 </head>
 <body>
     <div class="welcome">
-
+        <form action="/signup" method="post">
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+            <label for="">Email:</label>
+            <input type="email" name="email">
+            <br>
+            <label for="">First Name:</label>
+            <input type="text" name="first_name">
+            <br>
+            <label for="">Last Name:</label>
+            <input type="text" name="last_name">
+            <br>
+            <label for="">Password:</label>
+            <input type="password" name="password">
+            <br>
+            <label for="">Password Confirmation:</label>
+            <input type="password" name="password_confirmation">
+            <br>
+            <input type="submit" value="submit">
+        </form>
     </div>
 </body>
 </html>
