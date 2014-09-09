@@ -12,9 +12,18 @@
 */
 
 
-Route::post('oauth/access_token', 'OAuthController@getToken');
+Route::get('/signup', 'AuthController@showSignupForm');
+Route::post('/signup', 'AuthController@signup');
+Route::get('/login', 'AuthController@showLoginForm');
+Route::post('/login', 'AuthController@login');
+Route::get('/logout', 'AuthController@logout');
 
-Route::get('oauth/developer_platform', 'OAuthController@showDeveloperPlatform');
+
+
+Route::get('/oauth/developer_platform', array(
+    'before' => 'auth', 'OAuthController@showDeveloperPlatform'));
+
+
 
 Route::get('/oauth/authorize', array(
     'before' => 'check-authorization-params|auth', 'OAuthController@showAuthorizationForm'));
@@ -22,3 +31,8 @@ Route::get('/oauth/authorize', array(
 
 Route::post('/oauth/authorize', array(
     'before' => 'check-authorization-params|auth|csrf', 'OAuthController@getAuthorizationCode'));
+
+
+
+
+Route::post('/oauth/access_token', 'OAuthController@getToken');
