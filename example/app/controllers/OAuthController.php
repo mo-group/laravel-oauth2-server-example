@@ -25,6 +25,15 @@ class OAuthController extends BaseController {
 		return AuthorizationServer::performAccessTokenFlow();
 	}
 
+	public function showDeveloperPlatform()
+	{
+
+		$params = array();
+
+		// display the developer platform
+		return View::make('developer-platform', array('params' => $params));
+	}
+
 	public function showAuthorizationForm()
 	{
 		// get the data from the check-authorization-params filter

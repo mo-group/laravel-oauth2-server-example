@@ -14,6 +14,7 @@
 
 Route::post('oauth/access_token', 'OAuthController@getToken');
 
+Route::get('oauth/developer_platform', 'OAuthController@showDeveloperPlatform');
 
 Route::get('/oauth/authorize', array(
     'before' => 'check-authorization-params|auth', 'OAuthController@showAuthorizationForm'));
