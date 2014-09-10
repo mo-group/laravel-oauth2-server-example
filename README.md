@@ -1,6 +1,14 @@
 laravel-oauth2-server-example
 =============================
 
+# Warning: In progress
+
+for debug, set config `debug: true`
+
+
+
+=============================
+
 [OAuth-Server-Laravel](https://github.com/lucadegasperi/oauth2-server-laravel)
 
 laravel-oauth2-server-example
@@ -8,11 +16,11 @@ laravel-oauth2-server-example
 ## 1. download th Laravel installer
 
     composer global require "laravel/installer=~1.1"
-    
+
 ## 2. create new project
 
     laravel new example
-    
+
 ## 3. add oauth2 library denpendency to `composer.json`
 
     "require": {
@@ -20,22 +28,22 @@ laravel-oauth2-server-example
 		"zetacomponents/database": "1.4.6",
 		"lucadegasperi/oauth2-server-laravel": "dev-master"
 	},
-	
+
 ## 4. update composer dependency
 
     composer update
-    
+
 ## 5. add providers & aliases to `app/config/app.php`
 
 providers :
 
 	'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
-	
+
 aliases :
 
 	'AuthorizationServer' => 'LucaDegasperi\OAuth2Server\Facades\AuthorizationServerFacade',
 	'ResourceServer' => 'LucaDegasperi\OAuth2Server\Facades\ResourceServerFacade',
-	
+
 
 ## 6. config `app/config/database.php` to your setting
 
@@ -49,7 +57,7 @@ aliases :
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
-	
+
 
 ## 7. publish lib configuration
 
@@ -58,11 +66,11 @@ aliases :
 ## 8. library migration
 
 	php artisan migrate --package="lucadegasperi/oauth2-server-laravel"
-	
+
 ## 9. add users table migration
-	
+
 	php artisan migrate:make create_users_table
-	
+
 2014_08_21_141820_create_users_table
 
 	public function up()
@@ -84,11 +92,11 @@ aliases :
 		});
 
 	}
-	
+
 ## 10. run create table migration
-	
-	php artisan migrate	
-	
+
+	php artisan migrate
+
 ## 11. add oauth models
 
 models/OauthClient.php
@@ -177,7 +185,7 @@ models/OauthScope.php
 
 
 ## 13. add oauth seeding
-	
+
 database/seeds/DatabaseSeeder.php
 
 	<?php
@@ -201,7 +209,7 @@ database/seeds/DatabaseSeeder.php
     	}
 
     }
-    
+
 database/seeds/OAuthClientTableSeeder.php
 
 	<?php
@@ -229,7 +237,7 @@ database/seeds/OAuthClientTableSeeder.php
 
 
 database/seeds/OAuthScopeTableSeeder.php
-	
+
 	<?php
 
     class OAuthScopeTableSeeder extends Seeder {
@@ -249,7 +257,7 @@ database/seeds/OAuthScopeTableSeeder.php
 
     }
 
-	
+
 ## 14. routing
 
 add authorize code routing
@@ -265,7 +273,7 @@ add authorize code routing
         // display the authorization form
         return View::make('authorization-form', array('params' => $params));
     }));
-    
+
     Route::post('/oauth/authorize', array('before' => 'check-authorization-params|auth|csrf', function()
     {
         // get the data from the check-authorization-params filter
@@ -291,14 +299,14 @@ add authorize code routing
             return Redirect::to(AuthorizationServer::makeRedirectWithError($params));
         }
     }));
-    
+
 add get token routing
 
 	Route::post('oauth/access_token', function()
 	{
 		return AuthorizationServer::performAccessTokenFlow();
 	});
-	
+
 ## 15. add authorization-form view
 
 app/views/authorization-form.php
