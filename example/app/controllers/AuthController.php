@@ -28,11 +28,16 @@ class AuthController extends BaseController {
 	public function signup()
 	{
 
+		$email     = Input::get('email');
+		$password  = Input::get('password');
+		$firstName = Input::get('first_name');
+		$lastName  = Input::get('last_name');
+
 		User::create(array(
-			'email'      => Input::get('email'),
-			'password'   => Hash::make(Input::get('password')),
-			'first_name' => Input::get('first_name'),
-			'last_name'  => Input::get('last_name'),
+			'email'      => $email,
+			'password'   => Hash::make($password),
+			'first_name' => $firstName,
+			'last_name'  => $lastName,
 		));
 
 		if (Auth::attempt(array('email' => $email, 'password' => $password))) {
@@ -46,6 +51,9 @@ class AuthController extends BaseController {
 
 	public function login()
 	{
+
+		$email     = Input::get('email');
+		$password  = Input::get('password');
 
 		if (Auth::attempt(array('email' => $email, 'password' => $password))) {
 

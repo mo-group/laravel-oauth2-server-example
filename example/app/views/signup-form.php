@@ -36,7 +36,6 @@
 <body>
     <div class="welcome">
         <form action="/signup" method="post">
-            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
             <label for="">Email:</label>
             <input type="email" name="email">
             <br>

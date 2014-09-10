@@ -13,12 +13,10 @@
 
 
 Route::get('/signup', 'AuthController@showSignupForm');
-Route::post('/signup', array(
-    'before' => 'csrf', 'AuthController@signup'));
+Route::post('/signup', 'AuthController@signup');
 
 Route::get('/login', 'AuthController@showLoginForm');
-Route::post('/login', array(
-    'before' => 'csrf', 'AuthController@login'));
+Route::post('/login', 'AuthController@login');
 
 Route::get('/logout', 'AuthController@logout');
 
