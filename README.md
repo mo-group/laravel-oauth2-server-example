@@ -9,9 +9,9 @@ for debug, set config `debug: true`
 
 =============================
 
-[OAuth-Server-Laravel](https://github.com/lucadegasperi/oauth2-server-laravel)
+This project is a example of [OAuth-Server-Laravel](https://github.com/lucadegasperi/oauth2-server-laravel) package usage.
 
-laravel-oauth2-server-example
+# Step by Step
 
 ## 1. download th Laravel installer
 
