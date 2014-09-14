@@ -45,7 +45,7 @@ aliases :
 	'ResourceServer' => 'LucaDegasperi\OAuth2Server\Facades\ResourceServerFacade',
 
 
-## 6. config `app/config/database.php` to your setting
+## 6. config `app/config/database.php` for your setting
 
 	'mysql' => array(
 			'driver'    => 'mysql',
@@ -59,7 +59,7 @@ aliases :
 		),
 
 
-## 7. publish lib configuration
+## 7. publish library configuration
 
 	php artisan config:publish lucadegasperi/oauth2-server-laravel
 
